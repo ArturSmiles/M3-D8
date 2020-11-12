@@ -12,12 +12,9 @@
 
     <title>StriveZone</title>
     <style>
-        body {
-            background: linear-gradient(to top left, #66ff66 0%, #00cc00 100%) fixed;
-        }
 
         .navbar {
-            background-color: #198c2b7a;
+            background-color: #0405047a;
         }
         img{
             max-block-size: 10rem;
@@ -61,7 +58,7 @@
             try {
                 let response = await fetch("https://striveschool-api.herokuapp.com/api/product/", {
                     headers: {
-                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiZmRkZTRiY2RlMTAwMTc2MTZjYmEiLCJpYXQiOjE2MDUxMDcxNjcsImV4cCI6MTYwNjMxNjc2N30.luv9SSyB8ZLDD9s8ZCqZM7dznWm9ZYNQQhFxj9X_k7s"
+                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzU2ZjRiY2RlMTAwMTc2MTZhODciLCJpYXQiOjE2MDUxOTM2MDgsImV4cCI6MTYwNjQwMzIwOH0.1r38HqZ0csOqMyuVqfdGdPnDGfMatJD7CpudqUad2ao"
                     }
                 }); // this is getting the response from the API for a fetch request
 
@@ -81,11 +78,10 @@
               <br>
                 Product Brand: ${e.brand}
                 <br>
-                Description: ${e.description}
-                <br>
                 Price: ${e.price}€
               </p>
               <button type="Button" class="btn btn-dark">Buy</button>
+              <a class="btn btn-info" href="Details.html?id=${e._id}">Details</a>
           </div>`
                         ItemTable.appendChild(Item);
                     });

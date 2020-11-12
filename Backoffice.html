@@ -12,12 +12,8 @@
 
     <title>SZ Backoffice</title>
     <style>
-        body {
-            background: linear-gradient(to top left, #66ff66 0%, #00cc00 100%) fixed;
-        }
-
         .navbar {
-            background-color: #198c2b7a;
+            background-color:  #0405047a;
         }
     </style>
 </head>
@@ -81,11 +77,30 @@
 
     <!-- Optional JavaScript; choose one of the two! -->
     <script>
+        window.onload = async () => {
         const url = "https://striveschool-api.herokuapp.com/api/product/"
             const handleSubmit = (e) => {
         e.preventDefault(); // preventing the default browser event handling
         submitProduct();
       };
+
+      let urlParams = new URLSearchParams(window.location.search);
+        id = urlParams.get("id");
+        if (id) {
+          let response = await fetch(url + id,{
+            headers: {
+                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzU2ZjRiY2RlMTAwMTc2MTZhODciLCJpYXQiOjE2MDUxOTM2MDgsImV4cCI6MTYwNjQwMzIwOH0.1r38HqZ0csOqMyuVqfdGdPnDGfMatJD7CpudqUad2ao"
+                    }
+          }); // contacting the endpoint for a single event
+          let Item = await response.json(); // transforming the response body in an usable object, asyncronous operation!
+          document.getElementById("name").value = Item.name;
+          document.getElementById("brand").value = Item.bramd;
+          document.getElementById("description").value = Item.description
+          document.getElementById("price").value = Item.price;
+          document.getElementById("ImageUrl").value = Item.imageUrl;
+        }
+;
+
         const submitProduct = async () => {
             let myProduct = {
                 // gathering the data from the form, field by field
@@ -104,7 +119,7 @@
                     headers: new Headers({
                         // we need also to declare the content type
                         "Content-Type": "application/json",
-                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiZmRkZTRiY2RlMTAwMTc2MTZjYmEiLCJpYXQiOjE2MDUxMDcxNjcsImV4cCI6MTYwNjMxNjc2N30.luv9SSyB8ZLDD9s8ZCqZM7dznWm9ZYNQQhFxj9X_k7s",
+                        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFiYzU2ZjRiY2RlMTAwMTc2MTZhODciLCJpYXQiOjE2MDUxOTM2MDgsImV4cCI6MTYwNjQwMzIwOH0.1r38HqZ0csOqMyuVqfdGdPnDGfMatJD7CpudqUad2ao",
                     }),
                 });
 
@@ -119,7 +134,7 @@
                 console.log(error);
             }
         };
-
+        }
     </script>
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
